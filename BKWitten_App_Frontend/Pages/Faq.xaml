@@ -10,7 +10,7 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         
-        <Frame Margin="40,10" CornerRadius="10" BorderColor="Gray" Padding="10">
+        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
             <HorizontalStackLayout>
                
                 <VerticalStackLayout>

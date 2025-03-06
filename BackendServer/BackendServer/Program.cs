@@ -142,3 +142,54 @@ public static class PasswordHelper
         return BCrypt.Net.BCrypt.Verify(password, storedHash);
     }
 }
+
+
+// Konfiguration der API
+public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddCors(options =>
+        {
+        options.AddPolicy("AllowAll", builder =>
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
+        });
+        
+        services.AddControllers();  // Sorgt dafür, dass Web-API-Controller in die Anwendung integriert werden.
+        services.AddDbContext<ContentDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.UseRouting();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers(); // Sorgt dafür, dass alle definierten Controller-Routen verfügbar sind.
+        });
+    }
+
+
+
+public void ConfigureServices(IServiceCollection services)
+{
+    
+
+    services.AddControllers();
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    app.UseCors("AllowAll"); // Aktiviert CORS
+
+    app.UseRouting();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+}

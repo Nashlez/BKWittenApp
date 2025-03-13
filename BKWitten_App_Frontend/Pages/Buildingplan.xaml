@@ -4,7 +4,6 @@
              x:Class="BKWitten_App_Frontend.Pages.Buildingplan"
              xmlns:local="clr-namespace:BKWitten_App_Frontend.Pages"
              Title="Gebäudeplan">
-
     <VerticalStackLayout>
     
         <!-- Gebäudeplan laden -->

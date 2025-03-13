@@ -116,6 +116,8 @@ app.UseAuthorization(); // Enable authorization middleware to enforce access con
 
 app.MapRazorPages(); // Map Razor Pages (UI) to be handled by the routing system
 
+app.MapControllers(); // Aktiviert API-Controller
+
 app.Run();
 
 
@@ -161,6 +163,8 @@ public void ConfigureServices(IServiceCollection services)
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        app.UseCors("AllowAll"); // Aktiviert CORS
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -172,24 +176,4 @@ public void ConfigureServices(IServiceCollection services)
         {
             endpoints.MapControllers(); // Sorgt dafür, dass alle definierten Controller-Routen verfügbar sind.
         });
-    }
-
-
-
-public void ConfigureServices(IServiceCollection services)
-{
-    
-
-    services.AddControllers();
-}
-
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    app.UseCors("AllowAll"); // Aktiviert CORS
-
-    app.UseRouting();
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-    });
-}
+    }+

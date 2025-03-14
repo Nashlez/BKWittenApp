@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 
 namespace BackendServer.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/bkw")]
-    public class BkwController : ControllerBase
+    public class BkwController(ContentDBContext context) : ControllerBase
     {
-        private readonly ContentDBContext _context;
-
-        public BkwController(ContentDBContext context)
-        {
-            _context = context;
-        }
+        private readonly ContentDBContext _context = context;
 
         #region User CRUD Operations
 
@@ -334,7 +329,6 @@ namespace BackendServer.Controllers
             eventItem.Description = updatedEvent.Description;
             eventItem.StartDate = updatedEvent.StartDate;
             eventItem.EndDate = updatedEvent.EndDate;
-            eventItem.JobDescription = updatedEvent.JobDescription;
             eventItem.UserID = updatedEvent.UserID;
 
             _context.Entry(eventItem).State = EntityState.Modified;

@@ -163,10 +163,7 @@ namespace ContentDB.Migrations
     // DbContext for SQLite
     public class ContentDBContext : DbContext
     {
-        public ContentDBContext(DbContextOptions<ContentDBContext> options)
-       : base(options)
-        {
-        }
+        public ContentDBContext(DbContextOptions<ContentDBContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }

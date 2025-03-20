@@ -116,6 +116,8 @@ app.UseAuthorization(); // Enable authorization middleware to enforce access con
 
 app.MapRazorPages(); // Map Razor Pages (UI) to be handled by the routing system
 
+app.MapControllers(); // Aktiviert API-Controller
+
 app.Run();
 
 

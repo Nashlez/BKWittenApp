@@ -5,33 +5,21 @@
              x:Class="BKWitten_App_Frontend.Pages.Teacherprofiles"
              Title="Lehrerprofile"
              Background="Lavender">
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Lehrerprofile"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
-            <HorizontalStackLayout>
-                <Image Source="picpeople.png" WidthRequest="50" HeightRequest="50" Margin="0,0,10,0" />
-                <VerticalStackLayout>
-                    <Label Text="O. Schmiemann" FontAttributes="Bold" FontSize="Medium" />
-                    <Label Text="O.Schmiemann@bkwitten.org" FontSize="Small" LineBreakMode="WordWrap" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-        </Frame>
 
-        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
-            <HorizontalStackLayout>
-                <Image Source="picpeople.png" WidthRequest="50" HeightRequest="50" Margin="0,0,10,0" />
-                <VerticalStackLayout>
-                    <Label Text="B. Jung" FontAttributes="Bold" FontSize="Medium" />
-                    <Label Text="B.Jung@bkwitten.org" FontSize="Small" LineBreakMode="WordWrap" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-        </Frame>
+    <VerticalStackLayout>
+
+        <CollectionView ItemsSource="{Binding teacherList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="10" CornerRadius="2" BorderColor="Grey">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding FirstName}" FontAttributes="Bold"/>
+                            <Label Text="{Binding LastName}"/>
+                            <Label Text="{Binding Email}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
-    
-  
 </ContentPage>

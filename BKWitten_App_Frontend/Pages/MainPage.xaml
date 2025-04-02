@@ -3,37 +3,57 @@
              xmlns:local="clr-namespace:BKWitten_App_Frontend.ViewModels"
              x:Class="BKWitten_App_Frontend.Pages.MainPage"
              Title="BKWInfo"
-             Background="Lavender">
-
-    <ContentPage.BindingContext>
-        <local:EventsViewModel />
-    </ContentPage.BindingContext>
-
+             Background="GhostWhite">
     <ScrollView>
         <VerticalStackLayout>
-            <!-- Suchfeld -->
-            <Frame Margin="30,30" CornerRadius="10" BorderColor="Gray" Padding="0">
+            <Frame Margin="10,10" CornerRadius="2" BorderColor="Gray" Padding="0">
                 <Entry Placeholder="suchen..." 
-                       BackgroundColor="Transparent"
+                       Text="{Binding SearchTextPosts}"
+                       BackgroundColor="White"
                        Visual="Default" />
             </Frame>
-
-            <!-- Dynamische Liste der Events die aus dem EventsViewModel gebindet wird -->
-            <CollectionView ItemsSource="{Binding EventsList}">
+            <CollectionView ItemsSource="{Binding PostList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
-                            <HorizontalStackLayout>
-                                <Image Source="image_placeholder.png" WidthRequest="50" HeightRequest="50" Margin="0,0,10,0" />
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Medium" />
-                                    <Label Text="{Binding Description}" FontSize="Small" LineBreakMode="WordWrap" />
-                                </VerticalStackLayout>
-                            </HorizontalStackLayout>
+                        <Frame Margin="10"
+                   CornerRadius="2"
+                   BorderColor="DarkGray"
+                   BackgroundColor="White"
+                   Padding="15"
+                   HasShadow="True">
+                            <Grid RowDefinitions="Auto, Auto, *, Auto" 
+                      ColumnDefinitions="*">
+                                <Label Grid.Row="0"
+                           Text="{Binding Title}"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           LineBreakMode="WordWrap"
+                           MaxLines="2"
+                           HorizontalOptions="FillAndExpand" />
+                                <Label Grid.Row="1"
+                           Text="{Binding Description}"
+                           FontSize="Small"
+                           LineBreakMode="WordWrap"
+                           MaxLines="5"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start" />
+                                <Label Grid.Row="3"
+                           Text="{Binding Likes, StringFormat='{}{0} gefällt das'}"
+                           FontSize="Micro"
+                           LineBreakMode="WordWrap"
+                           VerticalOptions="End"
+                           HorizontalOptions="Start" />
+                                <Label Grid.Row="3"
+                           Text="{Binding CreationDate, StringFormat='{}{0:dd.MM.yyyy}'}"
+                           FontSize="Micro"
+                           HorizontalOptions="End"
+                           VerticalOptions="End" />
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

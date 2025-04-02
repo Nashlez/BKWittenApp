@@ -4,39 +4,76 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using BKWitten_App_Frontend.Models;
 using BKWitten_App_Frontend.Services;
+using System.Linq;
 
 namespace BKWitten_App_Frontend.ViewModels
 {
-    //INotifyPropertyChanged ist ein Interface welches dafür sorgt, dass sich das UI automatisch aktualisiert, wenn sich die PostListe ändert. 
     public class PostViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Posts> postList { get; set; } = new();
-        private readonly PostsService _PostService;
+        public ObservableCollection<Posts> PostList { get; set; }
+        public ObservableCollection<Posts> AllPosts { get; set; } = new();
+
+        private readonly PostsService _postService;
+
+        private string _searchTextPosts;
+        public string SearchTextPosts
+        {
+            get => _searchTextPosts;
+            set
+            {
+                if (_searchTextPosts != value)
+                {
+                    _searchTextPosts = value;
+                    OnPropertyChanged();
+                    FilterPosts(); 
+                }
+            }
+        }
         public PostViewModel()
         {
-            _PostService = new PostsService();  // PostsService instanziieren
-            LoadPosts(); // Methode aufrufen, um Posts zu laden
+            _postService = new PostsService(new HttpClient());
+            PostList = new ObservableCollection<Posts>();
+            _ = LoadPosts();
+            FilterPosts();
         }
-
-        // Methode zum Laden der Posts vom Service
-        private async void LoadPosts()
+        private async Task LoadPosts()
         {
-            // Posts über den PostsService laden
-            var postFromServiceAPI = await _PostService.GetAllPostsAsync();
-
-            // Leere die ObservableCollection, bevor neue Posts hinzugefügt werden
-            postList.Clear();
-
-            // Füge die geladenen Posts zur Liste hinzu
-            foreach (var posts in postFromServiceAPI!)
+            try
             {
-                postList.Add(posts);
+                var postsFromServiceAPI = await _postService.GetAllPostsAsync();
+                if (postsFromServiceAPI == null) return;
+
+                AllPosts = new ObservableCollection<Posts>(postsFromServiceAPI);
+                FilterPosts(); 
             }
-
-            // Aktualisiere das Binding
-            OnPropertyChanged(nameof(postList));
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fehler beim Laden der Posts: {ex.Message}");
+            }
         }
+        // Such- & Filter
+        private void FilterPosts()
+        {
+            if (string.IsNullOrWhiteSpace(SearchTextPosts))
+            {
+                PostList.Clear();
+                foreach (var post in AllPosts)
+                    PostList.Add(post);
+            }
+            else
+            {
+                var filtered = AllPosts
+                    .Where(post =>
+                        (!string.IsNullOrWhiteSpace(post.Title) &&
+                        post.Title.Contains(SearchTextPosts, StringComparison.OrdinalIgnoreCase)) ||
+                        (!string.IsNullOrWhiteSpace(post.Description) &&
+                        post.Description.Contains(SearchTextPosts, StringComparison.OrdinalIgnoreCase)));
 
+                PostList.Clear();
+                foreach (var post in filtered)
+                    PostList.Add(post);
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

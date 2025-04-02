@@ -2,45 +2,111 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BKWitten_App_Frontend.Pages.Faq"
-              xmlns:local="clr-namespace:BKWitten_App_Frontend.Pages"
-             Title="FAQ-Seite">
-    <VerticalStackLayout>
-        <Label 
-            Text="FAQ-Seite"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
-            <HorizontalStackLayout>
-               
-                <VerticalStackLayout>
-                    <Label Text="FAQ" FontAttributes="Bold" FontSize="Medium" />
-                    <Label Text="Hier kommen die FAQs rein." FontSize="Small" LineBreakMode="WordWrap" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-        </Frame>
+             Title="FAQ-Seite"
+             BackgroundColor="Lavender">
 
-        <!-- Zweiter Frame mit Bild, Titel und Textkörper -->
-        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
-            <HorizontalStackLayout>
-            
-                <VerticalStackLayout>
-                    <Label Text="Schulordnung" FontAttributes="Bold" FontSize="Medium" />
-                    <Label Text="In diesem Frame steht die Schulordnung." FontSize="Small" LineBreakMode="WordWrap"  />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-        </Frame>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
 
-        <!-- Dritter Frame mit Bild, Titel und Textkörper -->
-        <Frame Margin="30,10" CornerRadius="10" BorderColor="Gray" Padding="10">
-            <HorizontalStackLayout>
-           
-                <VerticalStackLayout>
-                    <Label Text="Impressum" FontAttributes="Bold" FontSize="Medium" />
-                    <Label Text="Hier wird das Impressum der App angezeigt." FontSize="Small" LineBreakMode="WordWrap"  />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-        </Frame>
+            <!-- Titel -->
+            <Label Text="FAQ-Seite"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
 
-    </VerticalStackLayout>
+            <!-- FAQ-Kasten -->
+            <Frame CornerRadius="3"
+                   Padding="15"
+                   BackgroundColor="White"
+                   BorderColor="DarkGray"
+                   HasShadow="True">
+                <VerticalStackLayout>
+                    <Label Text="FAQ" 
+                           FontSize="Medium" 
+                           FontAttributes="Bold" 
+                           LineBreakMode="WordWrap" />
+                    <Label Text="Hier kommen die FAQs rein." 
+                           FontSize="Small" 
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Schulordnung -->
+            <Frame CornerRadius="3"
+       Padding="10"
+       BackgroundColor="White"
+       BorderColor="DarkGray"
+       HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Schulordnung"
+               FontSize="Medium"
+               FontAttributes="Bold" />
+
+                    <Label Text="Lernbereitschaft:"
+               FontAttributes="Bold"
+               FontSize="Small" />
+                    <Label Text="Aktive Mitarbeit, Konzentration und ein respektvoller Umgang während des Unterrichts sind Voraussetzung für einen erfolgreichen Lernprozess."
+               FontSize="Small"
+               LineBreakMode="WordWrap" />
+
+                    <Label Text="Störung des Unterrichts:"
+               FontAttributes="Bold"
+               FontSize="Small" />
+                    <Label Text="Störungen sind zu unterlassen. Wer wiederholt den Unterricht stört, kann mit erzieherischen Maßnahmen rechnen."
+               FontSize="Small"
+               LineBreakMode="WordWrap" />
+
+                    <Label Text="Umgang mit Materialien:"
+               FontAttributes="Bold"
+               FontSize="Small" />
+                    <Label Text="Sach- und Umgangsformen sind zu wahren. Beschädigungen von Schuleigentum können nach schulrechtlichen Vorgaben geahndet werden."
+               FontSize="Small"
+               LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame CornerRadius="3"
+       Padding="10"
+       BackgroundColor="White"
+       BorderColor="DarkGray"
+       HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Impressum"
+               FontSize="Medium"
+               FontAttributes="Bold" />
+
+                    <Label Text="Angaben gemäß § 5 TMG:"
+               FontAttributes="Bold"
+               FontSize="Small" />
+                 
+                    <Label Text="Berufskolleg Witten"
+               FontSize="Small" />
+                    <Label Text="Husemannstr. 51"
+               FontSize="Small" />
+                    <Label Text="58452 Witten"
+               FontSize="Small" />
+
+                    <Label Text="Kontakt:"
+               FontAttributes="Bold"
+               FontSize="Small"
+               Margin="0,10,0,0" />
+                    <Label Text="Telefon: 02302 920-0"
+               FontSize="Small" />
+                    <Label Text="Telefax: 02302 920-200"
+               FontSize="Small" />
+                    <Label Text="E-Mail: Fenstergruppe@bkwitten.net"
+               FontSize="Small" />
+
+                    <Label Text="Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:"
+               FontAttributes="Bold"
+               FontSize="Small"
+               Margin="0,10,0,0" />
+                    <Label Text="Fenstergruppe"
+               FontSize="Small" />
+                    <Label Text="ITO2"
+               FontSize="Small" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

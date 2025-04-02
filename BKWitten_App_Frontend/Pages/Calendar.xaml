@@ -12,10 +12,10 @@
             HorizontalOptions="Center" />
 
         <controls:Calendar
-        Day="25"
-        Month="9"
-        Year="2024"
+        Day="14"
+        Month="2"
+        Year="2025"
         VerticalOptions="Fill"
-        HorizontalOptions="Fill" />
+        HorizontalOptions="Fill"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -3,9 +3,10 @@ using Android.Runtime;
 
 namespace BKWitten_App_Frontend
 {
-    [Application]
+    [Application(UsesCleartextTraffic = true)]
     public class MainApplication : MauiApplication
     {
+     
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)
             : base(handle, ownership)
         {

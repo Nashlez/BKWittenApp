@@ -5,8 +5,6 @@
              xmlns:local="clr-namespace:BKWitten_App_Frontend.Pages"
              Title="Gebäudeplan">
     <VerticalStackLayout>
-    
-        <!-- Gebäudeplan laden -->
         <Image 
             Source="buildingplan.jpg" 
             Margin="5" 

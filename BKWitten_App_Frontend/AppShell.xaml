@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:BKWitten_App_Frontend.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="BKWInfo">
-<!--Hauptnavigation im unteren Bereich des Bildschirms-->
+
     <TabBar>
         <Tab Title="Home" Icon="house.png">
             <ShellContent Title="Home" 
@@ -23,7 +23,7 @@
                  ContentTemplate="{DataTemplate local:Teacherprofiles}" 
                  Route="Teacherprofile" />
         </Tab>
-        <Tab Title="Kalendar" Icon="kalendertage.png">
+        <Tab Title="Kalender" Icon="kalendertage.png">
             <ShellContent Title="Kalender" 
                  ContentTemplate="{DataTemplate local:Calendar}" 
                  Route="Calendar" />

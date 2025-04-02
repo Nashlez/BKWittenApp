@@ -9,45 +9,30 @@ namespace BKWitten_App_Frontend.Services
 {
     public class PostsService
     {
-        private readonly HttpClient _httpClient; //HTTPClient für die Kommunikation mit unserem Backend
-        private readonly string _baseUrl = "https://unserBackend:3000/events/"; //unsere URL vom Backend auf der die Daten bereitgestellt werden
-
+        private readonly HttpClient _httpClient; 
+        private readonly string _baseUrl = "http://10.32.0.156:5266/api/bkw/posts"; 
         public PostsService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
-
-        public PostsService()
-        {
-        }
-
-        // Alle Posts abrufen
         public async Task<List<Posts>> GetAllPostsAsync()
         {
             return await _httpClient.GetFromJsonAsync<List<Posts>>(_baseUrl);
         }
-
-        // Einzelnen Post abrufen
         public async Task<Posts> GetPostByIdAsync(int postId)
         {
             return await _httpClient.GetFromJsonAsync<Posts>($"{_baseUrl}/{postId}");
         }
-
-        // Neuen Post hinzufügen
         public async Task<bool> AddPostAsync(Posts post)
         {
             var response = await _httpClient.PostAsJsonAsync(_baseUrl, post);
             return response.IsSuccessStatusCode;
         }
-
-        // Post aktualisieren
         public async Task<bool> UpdatePostAsync(Posts post)
         {
             var response = await _httpClient.PutAsJsonAsync($"{_baseUrl}/{post.PostID}", post);
             return response.IsSuccessStatusCode;
         }
-
-        // Post löschen
         public async Task<bool> DeletePostAsync(int postId)
         {
             var response = await _httpClient.DeleteAsync($"{_baseUrl}/{postId}");
